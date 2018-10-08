@@ -25,12 +25,12 @@ class CoursePage extends Component {
   }
 }
 
-CoursePage.propTypes = {
+CoursePage.PropTypes = {
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
-function mapStateProps(state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     courses: state.courses
   };
@@ -42,4 +42,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(CoursePage);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursePage);
