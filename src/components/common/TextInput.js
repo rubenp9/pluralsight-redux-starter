@@ -1,30 +1,30 @@
 import React, {PropTypes} from "react";
 
-const SelectInput = ({name, label, onChange, defaultOption, value, error, options}) => {
+const TextInput = ({name, label, onChange, placeholder, value, error}) => {
+  let wrapperClass = 'form-group';
+  if (error && error.length > 0) {
+    wrapperClass += " has-error";
+  }
+
   return (
-    <div className="form-group">
+    <div className={wrapperClass}>
       <label htmlFor={name}>{label}</label>
       <div className="field">
-        <select name={name} className="form-control" value={value} onChange={onChange}>
-          <option value="">{defaultOption}</option>
-          {options.map(option => {
-            return <option key={option.value} value={option.value}>{option.text}</option>;
-          })}
-        </select>
+        <input type="text" name={name} className="form-control" placeholder={placeholder}
+               value={value} onChange={onChange}/>
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
   );
 };
 
-SelectInput.PropTypes = {
+TextInput.PropTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  defaultOption: PropTypes.string,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
-  error: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object)
+  error: PropTypes.string
 };
 
-export default SelectInput;
+export default TextInput;
